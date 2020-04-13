@@ -1,4 +1,4 @@
-Ansible Role: Deploy cloud init image on KVM
+Ansible Role: Deploy vms with cloud init image on KVM
 =========
 
 This role does deploy vms inside Kvm for lab proposes with cloud-init. 
