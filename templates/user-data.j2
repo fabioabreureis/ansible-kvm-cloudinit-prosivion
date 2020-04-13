@@ -6,6 +6,21 @@ ssh_pwauth: True
 chpasswd: { expire: False }
 timezone: UTC
 
+
+{% if enableroot is defined %}
+#Root Password
+disable_root: false
+chpasswd:
+  list: |
+    root: {{ root_pwd }}
+  expire: false
+runcmd:
+  - sed -i'.orig' -e's/without-password/yes/' /etc/ssh/sshd_config
+  - service sshd restart
+{% endif %}
+
+
+
 # Users
 users:
   - default

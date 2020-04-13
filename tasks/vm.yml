@@ -51,3 +51,5 @@
     autostart: true 
   when: vm.name not in vms.list_vms
 
+- name: "{{ vm.name }} eject CD-Rom"
+  shell: "virsh --connect qemu:///system change-media {{ vm.name }} hda --eject --config --live"
