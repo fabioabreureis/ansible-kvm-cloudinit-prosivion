@@ -19,9 +19,7 @@ Variables:
 + domain: fqdn configuration. 
 + vm_public_key: SSH Public Key
 + virtual_machines: Definitions for create many virtual machines like name,osvariant,cpu,memory,disk size and network definitions. 
-+ enableroot: It enables root authentication, so if does it set in variables, then you need set the root_pwd.
-+ root_pwd: root password.
-
++ enableroot: It does enable root authentication.
 
 
 Examples 
