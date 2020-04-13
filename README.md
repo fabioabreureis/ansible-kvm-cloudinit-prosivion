@@ -42,6 +42,8 @@ cloudimg_url: https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCl
 osversion: centos7
 domain: local.lab
 vm_public_key: "{{lookup('file','~/.ssh/id_rsa.pub')}}"
+enableroot: yes
+root_pwd: redhat
 virtual_machines:
   - name: lab1
     osvariant: rhel7
