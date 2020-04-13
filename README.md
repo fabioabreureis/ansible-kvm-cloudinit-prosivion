@@ -31,6 +31,9 @@ Examples
 In my example I will create a deployment of 2 vms with CentOS7 using bridge0 and insert my ssh public key. 
 
 
+If you wasn't set the bridge configuration it will config the default bridge from kvm.
+
+
 Variables: 
 
 ```bash 
