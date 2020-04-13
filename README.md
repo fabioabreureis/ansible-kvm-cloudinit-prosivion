@@ -7,8 +7,8 @@ This role does deploy vms inside Kvm for lab proposes with cloud-init.
 *Details*
 - Download cloud Image.
 - Generate cloud init user/meta data and booting iso.
-- Increase root storage size to 20G.
-- Deploy Kvm 
+- Increase root storage size.
+- Deploy vms.  
 
 
 Variables:
