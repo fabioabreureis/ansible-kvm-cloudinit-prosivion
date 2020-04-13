@@ -1,0 +1,9 @@
+---
+- name: Set up Cloud Image
+  include_tasks: cloud_img.yml
+
+- name: Configure Virtual Machines
+  include_tasks: vm.yml
+  loop: "{{ virtual_machines }}"
+  loop_control: 
+    loop_var: vm

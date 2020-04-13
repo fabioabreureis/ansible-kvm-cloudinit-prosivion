@@ -1,0 +1,6 @@
+---
+libvirt_dir: /var/lib/libvirt
+vm_data_dir: "{{ libvirt_dir }}/images/{{ vm.name }}"
+cloud_init_user_data: "{{ libvirt_dir }}/images/{{ vm.name }}/user-data"
+cloud_init_meta_data: "{{ libvirt_dir }}/images/{{ vm.name }}/meta-data"
+cloud_init_iso_image: "{{ libvirt_dir }}/images/{{ vm.name }}/cidata.iso"

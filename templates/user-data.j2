@@ -1,0 +1,28 @@
+#cloud-config
+hostname: "{{ vm.name }}"
+fqdn: "{{ vm.name }}.{{ domain }}"
+manage_etc_hosts: true
+ssh_pwauth: True 
+chpasswd: { expire: False }
+timezone: UTC
+
+# Users
+users:
+  - default
+  - name: centos
+    ssh_authorized_keys:
+    - {{ vm_public_key }}
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+
+# Remove cloud-init when finished with it
+runcmd:
+  - [ yum, -y, remove, cloud-init ]
+
+# Configure where output will go
+output:
+  all: ">> /var/log/cloud-init.log"
+
+# Install my public ssh key to the first user-defined user configured
+# in cloud.cfg in the template (which is centos for CentOS cloud images)
+ssh_authorized_keys:
+  - {{ vm_public_key }}

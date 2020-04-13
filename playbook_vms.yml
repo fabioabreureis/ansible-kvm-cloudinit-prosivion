@@ -1,0 +1,5 @@
+- name: Create KVM Vms
+  hosts: kvm
+  become: true 
+  roles: 
+    - ansible-kvm-cloudinit-prosivion

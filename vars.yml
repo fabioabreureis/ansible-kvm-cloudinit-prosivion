@@ -1,0 +1,43 @@
+---
+cloudimg_url: https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-1809.qcow2
+osversion: centos7
+domain: local.lab
+vm_public_key: "{{lookup('file','~/.ssh/id_rsa.pub')}}"
+virtual_machines:
+  - name: lab1
+    osvariant: rhel7
+    cpu: 1
+    mem: 512
+    disk: 15G
+    bridge: bridge0
+    net:
+      ip: 192.168.15.201
+      mask: 255.255.255.0
+      gateway: 192.168.15.1
+      domain: local.lab
+      dns: 8.8.8.8
+  - name: lab2
+    osvariant: rhel7
+    cpu: 1
+    mem: 512
+    disk: 15G
+    bridge: bridge0
+    net:
+      ip: 192.168.15.202
+      mask: 255.255.255.0
+      gateway: 192.168.15.1
+      domain: local.lab
+      dns: 8.8.8.8
+  - name: lab3
+    osvariant: rhel7
+    cpu: 1
+    mem: 512
+    disk: 15G
+    bridge: bridge0
+    net:
+      ip: 192.168.15.203
+      mask: 255.255.255.0
+      gateway: 192.168.15.1
+      domain: local.lab
+      dns: 8.8.8.8
+
