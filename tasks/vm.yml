@@ -44,9 +44,3 @@
         --network bridge={{ vm.bridge|default('default') }},model=virtio 
         --import
   when: vm.name not in vms.list_vms
-
-- name: "{{ vm.name }} start with host startup"
-  virt: 
-    name: "{{ vm.name }}"
-    autostart: true 
-  when: vm.name not in vms.list_vms

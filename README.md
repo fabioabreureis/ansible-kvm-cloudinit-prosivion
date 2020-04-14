@@ -11,6 +11,13 @@ This role does deploy vms inside Kvm for lab proposes with cloud-init.
 - Deploy vms.  
 
 
+Requirements:
+=========
+
+This playbook was tested with Ansible 2.7 and 2.9.
+
+
+
 Variables:
 =========
 
