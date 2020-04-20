@@ -12,7 +12,7 @@ This role does deploy vms inside Kvm for lab proposes with cloud-init.
 - Deploy vms. 
 - This was tested with :
     + Ubuntu: 16 and 18
-    + RHEL based on 6 and 7 version (CentOS and Fedora).  
+    + RHEL OS based on 6 and 7 version (CentOS and Fedora).  
 
 
 
