@@ -102,7 +102,7 @@ ansible-playbook -i inventory/hosts site.yml
 Remove vms :
 ---------
 
-If did you need destroy the vms run this playbook bellow, so it will undefine, destroy and remove the disk of vms. 
+If you need to destroy the vms run this playbook bellow, so it will undefine, destroy and remove the disk of vms. 
 
 
 Run the destroy.yml playbook and confirm the operation. 
