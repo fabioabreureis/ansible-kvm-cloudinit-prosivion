@@ -42,11 +42,26 @@ In my example I will create a deployment of 2 vms with CentOS7 using bridge0 and
 If you wasn't set the bridge configuration it will config the default bridge from kvm.
 
 
-After clone this repo copy the kvm-sample.yml for kvm hostname: 
+After clone this repo update the inventory file : 
+
+```bash 
+vi inventory/hosts
+...
+
+
+[kvm]
+kvm.example.com
+
+...
+```
+
+
+Copy the kvm-sample.yml for kvm hostname: 
 
 ```bash 
 
 cp inventory/host_vars/kvm-sample.yml inventory/host_vars/kvm.example.com.yml
+
 
 ```
 
