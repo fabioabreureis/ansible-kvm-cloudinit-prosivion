@@ -2,4 +2,4 @@
   hosts: kvm
   become: true 
   roles: 
-    - ansible-kvm-cloudinit-prosivion
+    - vms

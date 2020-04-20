@@ -5,10 +5,15 @@ This role does deploy vms inside Kvm for lab proposes with cloud-init.
 
 
 *Details*
+
 - Download cloud Image.
 - Generate cloud init user/meta data and booting iso.
 - Increase root storage size.
-- Deploy vms.  
+- Deploy vms. 
+- This was tested with :
+    + Ubuntu: 16 and 18
+    + RHEL based on 6 and 7 version (CentOS and Fedora).  
+
 
 
 Requirements:
@@ -29,22 +34,30 @@ Variables:
 + enableroot: It does enable root authentication.
 
 
-Examples 
+How to : 
 ---------
 
 
 In my example I will create a deployment of 2 vms with CentOS7 using bridge0 and insert my ssh public key. 
-
-
 If you wasn't set the bridge configuration it will config the default bridge from kvm.
 
 
-Variables: 
+After clone this repo copy the kvm-sample.yml for kvm hostname: 
+
+```bash 
+
+cp inventory/host_vars/kvm-sample.yml inventory/host_vars/kvm.example.com.yml
+
+```
+
+kvm.example.com.yml variables:
+
+So it's important put the correct osvariant because this variable is important for virt-install command. 
 
 ```bash 
 ---
 cloudimg_url: https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-1809.qcow2
-osversion: centos7
+osvariant: centos7.0 
 domain: local.lab
 vm_public_key: "{{lookup('file','~/.ssh/id_rsa.pub')}}"
 enableroot: yes
@@ -76,18 +89,30 @@ virtual_machines:
       dns: 8.8.8.8
 ```
 
-Playbook example : 
+Execute the site.yml playbook : 
 
 
 ```bash 
 
-- name: Create KVM Vms
-  hosts: kvm
-  become: true
-  roles:
-    - ansible-kvm-cloudinit-prosivion
+ansible-playbook -i inventory/hosts site.yml 
+
+``` 
+
+
+Remove vms :
+---------
+
+If did you need destroy the vms run this playbook bellow, so it will undefine, destroy and remove the disk of vms. 
+
+
+Run the destroy.yml playbook and confirm the operation. 
+
+```bash
+
+ansible-playbook -i inventory/hosts destroy.yml
 
 ```
+
 
 
 License

@@ -3,29 +3,41 @@
   virt:
     command: list_vms
   register: vms
+  tags:
+    - list_vms
 
 - name: "{{ vm.name }} :: VM storage location "
   file: 
     state: directory 
     path: "{{ libvirt_dir }}/images/{{ vm.name }}"
+  tags:
+    - vmdir
 
 - name: "{{ vm.name }} :: Copy cloud-init user data"
   template:
     src: user-data.j2
     dest: "{{ cloud_init_user_data }}"
     mode: 0777
+  tags:
+    - cloudinitdef
 
 - name: "{{ vm.name }} :: Copy cloud-init meta data"
   template:
     src: network-config-v2.yml.j2
     dest: "{{ cloud_init_meta_data }}"
     mode: 0777
+  tags:
+    - cloudinit_def
 
 - name: Create root disk based on cloud init img
-  command: "qemu-img create -b {{ libvirt_dir }}/images/{{ osversion }}-cloudimg-amd64.qcow2 -f qcow2 {{ libvirt_dir }}/images/{{ vm.name }}/{{ vm.name }}.qcow2 {{ vm.disk|default('5G')  }}"
+  command: "qemu-img create -b {{ libvirt_dir }}/images/{{ cloudimg_file }} -f qcow2 {{ libvirt_dir }}/images/{{ vm.name }}/{{ vm.name }}.qcow2 {{ vm.disk|default('8G')  }}"
+  tags:
+    - vmdisk_create
 
 - name: Create iso image for cloud init
   shell: "genisoimage -output {{ cloud_init_iso_image }} -volid cidata -joliet -r {{ cloud_init_user_data }} {{ cloud_init_meta_data }}"
+  tags:
+    - cloudinit_iso
 
 - name: "{{ vm.name }} :: Create virtual machine "
   shell: 
@@ -35,12 +47,14 @@
         --name {{ vm.name }}
         --memory {{ vm.mem|default('512') }}
         --vcpus  {{ vm.cpu|default('1') }}
+        --os-variant {{ osvariant }}
         --disk {{ libvirt_dir }}/images/{{ vm.name }}/{{ vm.name }}.qcow2,device=disk,bus=virtio 
         --disk {{ cloud_init_iso_image }},device=cdrom 
         --os-type linux 
-        --os-variant {{ vm.osvariant }}
         --virt-type kvm 
         --graphics none 
         --network bridge={{ vm.bridge|default('default') }},model=virtio 
         --import
   when: vm.name not in vms.list_vms
+  tags:
+    - create_vm

@@ -1,0 +1,35 @@
+{% if vm.net is defined %}
+{% if 'centos'  in osvariant %}
+network-interfaces: |
+  iface eth0 inet static
+  address {{ vm.net.ip }}
+  netmask {{ vm.net.mask }}
+  gateway {{ vm.net.gateway }}
+  dns-nameservers 8.8.8.8 {{ vm.net.dns }}
+  dns-search {{ vm.net.domain }}
+bootcmd:
+  - ip link set dev eth0 down
+  - ip link set dev eth0 up
+{% elif 'rhel'  in osvariant %}
+network-interfaces: |
+  iface eth0 inet static
+  address {{ vm.net.ip }}
+  netmask {{ vm.net.mask }}
+  gateway {{ vm.net.gateway }}
+  dns-nameservers 8.8.8.8 {{ vm.net.dns }}
+  dns-search {{ vm.net.domain }}
+bootcmd:
+  - ip link set dev eth0 down
+  - ip link set dev eth0 up
+{% elif 'ubuntu' in osvariant %}    
+network-interfaces: |
+  auto ens3
+  iface ens3 inet static
+  address {{ vm.net.ip }}
+  netmask {{ vm.net.mask }}
+  gateway {{ vm.net.gateway }}
+  dns-nameservers 8.8.8.8 {{ vm.net.dns }}
+  dns-search {{ vm.net.domain }}
+{% endif %}
+{% endif %}
+

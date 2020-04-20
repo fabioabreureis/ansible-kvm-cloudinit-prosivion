@@ -1,11 +1,11 @@
 #cloud-config
+ds: nocloud
 hostname: "{{ vm.name }}"
 fqdn: "{{ vm.name }}.{{ domain }}"
 manage_etc_hosts: false
 ssh_pwauth: True 
 chpasswd: { expire: False }
 timezone: UTC
-
 
 {% if enableroot is defined %}
 #Root Password
@@ -14,20 +14,6 @@ runcmd:
   - sed -i'.orig' -e's/without-password/yes/' /etc/ssh/sshd_config
   - service sshd restart
 {% endif %}
-
-
-
-# Users
-users:
-  - default
-  - name: centos
-    ssh_authorized_keys:
-    - {{ vm_public_key }}
-    sudo: ['ALL=(ALL) NOPASSWD:ALL']
-
-# Remove cloud-init when finished with it
-runcmd:
-  - [ yum, -y, remove, cloud-init ]
 
 # Configure where output will go
 output:
