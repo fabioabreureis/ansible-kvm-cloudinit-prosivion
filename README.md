@@ -9,7 +9,7 @@ This role does deploy vms inside Kvm for lab proposes with cloud-init.
 - Download cloud Image.
 - Generate cloud init user/meta data and booting iso.
 - Increase root storage size.
-- Deploy vms. 
+- Deploy vms with volumes. 
 - This was tested with :
     + Ubuntu: 16 and 18
     + RHEL OS based on 6 and 7 version (CentOS and Fedora).  
@@ -30,7 +30,7 @@ Variables:
 + osversion: OS label for deployment.
 + domain: fqdn configuration. 
 + vm_public_key: SSH Public Key
-+ virtual_machines: Definitions for create many virtual machines like name,osvariant,cpu,memory,disk size and network definitions. 
++ virtual_machines: Definitions for create many virtual machines like name,osvariant,cpu,memory,disk size,network and storage definitions. 
 + enableroot: It does enable root authentication.
 
 
@@ -38,7 +38,7 @@ How to :
 ---------
 
 
-In my example I will create a deployment of 2 vms with CentOS7 using bridge0 and insert my ssh public key. 
+In my example I will create a deployment of 2 vms with CentOS7 using bridge0, some volumes  and insert my ssh public key. 
 If you wasn't set the bridge configuration it will config the default bridge from kvm.
 
 
