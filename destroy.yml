@@ -45,3 +45,6 @@
       loop: "{{ virtual_machines }}"
       tags:
         - vm_removedir
+
+
+

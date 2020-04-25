@@ -1,0 +1,8 @@
+- name: Create KVM Vms
+  hosts: kvm
+  become: true 
+  tasks:
+    - debug:
+        msg: "{{ item.0.name }}-{{ item.1.device}}.{{ item.0.name }}"
+      loop: "{{ virtual_machines | subelements('volumes', 'skip_missing=True') }}"
+

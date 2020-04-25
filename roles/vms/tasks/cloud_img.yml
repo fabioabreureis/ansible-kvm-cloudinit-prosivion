@@ -11,13 +11,6 @@
   tags:
     - imgdircheck
 
-- name: qemu images directory 
-  file: 
-    state: directory 
-    path: "{{ libvirt_dir }}/images"
-  tags:
-    - imgdircheck
-
 - name: Test download url
   uri:
     url: "{{ cloudimg_url }}"
@@ -35,11 +28,10 @@
 
 - name: "Check if qemu image directory does exists"
   stat:
-    path: "{{ libvirt_dir }}/{{ cloudimg_file }}"
-  register: imgdir
+    path: "{{ libvirt_dir }}/images/{{ cloudimg_file }}"
+  register: imgfile
   tags:
     - imgfilecheck
-
 
 - name: Download file with check
   get_url:

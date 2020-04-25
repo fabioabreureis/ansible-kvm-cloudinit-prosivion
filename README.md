@@ -79,7 +79,6 @@ enableroot: yes
 root_pwd: redhat
 virtual_machines:
   - name: lab1
-    osvariant: rhel7
     cpu: 1
     mem: 512
     disk: 15G
@@ -90,8 +89,17 @@ virtual_machines:
       gateway: 192.168.15.1
       domain: local.lab
       dns: 8.8.8.8
+    volumes:
+      - device: vdb
+        size: 5
+        type: qcow2
+      - device: vdc
+        size: 5
+        type: qcow2
+      - device: vdd
+        size: 5 
+        type: qcow2
   - name: lab2
-    osvariant: rhel7
     cpu: 1
     mem: 512
     disk: 15G
@@ -102,6 +110,10 @@ virtual_machines:
       gateway: 192.168.15.1
       domain: local.lab
       dns: 8.8.8.8
+    volumes:
+      - device: vdb
+        size: 2
+        type: qcow2
 ```
 
 Execute the site.yml playbook : 
