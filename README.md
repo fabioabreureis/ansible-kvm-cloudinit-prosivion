@@ -92,13 +92,13 @@ virtual_machines:
     volumes:
       - device: vdb
         size: 5
-        type: qcow2
+        type: raw
       - device: vdc
         size: 5
-        type: qcow2
+        type: raw
       - device: vdd
         size: 5 
-        type: qcow2
+        type: raw
   - name: lab2
     cpu: 1
     mem: 512
@@ -113,7 +113,7 @@ virtual_machines:
     volumes:
       - device: vdb
         size: 2
-        type: qcow2
+        type: raw
 ```
 
 Execute the site.yml playbook : 
