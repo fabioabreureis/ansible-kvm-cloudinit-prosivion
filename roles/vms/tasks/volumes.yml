@@ -1,5 +1,4 @@
 ---
-
 - name: " {{ item.1.device }} :: Check if volume file exists"
   stat:
     path: " {{ libvirt_dir }}/images/{{ item.0.name }}/{{ item.0.name }}-{{ item.1.device }}.{{ item.1.type }}"
@@ -14,7 +13,7 @@
     - vol_removedir
 
 - name: " Create disk {{ libvirt_dir }}/images/{{ item.0.name }}-{{ item.1.device }}.{{ item.1.type }}"
-  shell: "qemu-img create {{ libvirt_dir }}/images/{{ item.0.name }}/{{ item.0.name }}-{{ item.1.device }}.{{ item.1.type }} {{ item.1.size }}"
+  shell: "qemu-img create -f {{ item.1.type }} {{ libvirt_dir }}/images/{{ item.0.name }}/{{ item.0.name }}-{{ item.1.device }}.{{ item.1.type }} {{ item.1.size }}"
   when: volfilecheck.stat.islnk is not defined
   tags:
     - volfilecreate

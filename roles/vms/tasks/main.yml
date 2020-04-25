@@ -8,6 +8,9 @@
   loop_control: 
     loop_var: vm
 
+- pause:
+    minutes: 1
+
 - name: Configure Volumes
   include_tasks: volumes.yml
   loop: "{{ virtual_machines | subelements('volumes', 'skip_missing=True') }}"

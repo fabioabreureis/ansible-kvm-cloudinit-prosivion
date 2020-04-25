@@ -1,5 +1,4 @@
 ---
-
 # Image url  example
 #cloudimg_url: https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-1809.qcow2
 cloudimg_url: https://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.img
@@ -23,14 +22,14 @@ virtual_machines:
       dns: 8.8.8.8
     volumes:
       - device: vdb
-        size: 5
-        type: qcow2
+        size: 5G
+        type: raw
       - device: vdc
-        size: 5
-        type: qcow2
+        size: 5G
+        type: raw
       - device: vdd
-        size: 5 
-        type: qcow2
+        size: 5G
+        type: raw
   - name: lab2
     cpu: 1
     mem: 512
@@ -44,5 +43,5 @@ virtual_machines:
       dns: 8.8.8.8
     volumes:
       - device: vdb
-        size: 2
-        type: qcow2
+        size: 2G
+        type: raw
