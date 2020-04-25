@@ -44,4 +44,4 @@ virtual_machines:
     volumes:
       - device: vdb
         size: 2G
-        type: raw
+        type: qcow2
