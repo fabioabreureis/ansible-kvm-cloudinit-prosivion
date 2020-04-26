@@ -5,8 +5,8 @@ network-interfaces: |
   address {{ vm.net.ip }}
   netmask {{ vm.net.mask }}
   gateway {{ vm.net.gateway }}
-  dns-nameservers 8.8.8.8 {{ vm.net.dns }}
-  dns-search {{ vm.net.domain }}
+  dns-nameservers {{ vm.net.dns }} 8.8.8.8
+  dns-search {{ domain }}
 bootcmd:
   - ip link set dev eth0 down
   - ip link set dev eth0 up
@@ -16,8 +16,8 @@ network-interfaces: |
   address {{ vm.net.ip }}
   netmask {{ vm.net.mask }}
   gateway {{ vm.net.gateway }}
-  dns-nameservers 8.8.8.8 {{ vm.net.dns }}
-  dns-search {{ vm.net.domain }}
+  dns-nameservers {{ vm.net.dns }} 8.8.8.8
+  dns-search {{ domain }}
 bootcmd:
   - ip link set dev eth0 down
   - ip link set dev eth0 up
@@ -28,8 +28,8 @@ network-interfaces: |
   address {{ vm.net.ip }}
   netmask {{ vm.net.mask }}
   gateway {{ vm.net.gateway }}
-  dns-nameservers 8.8.8.8 {{ vm.net.dns }}
-  dns-search {{ vm.net.domain }}
+  dns-nameservers {{ vm.net.dns }} 8.8.8.8
+  dns-search {{ domain }}
 {% endif %}
 {% endif %}
 

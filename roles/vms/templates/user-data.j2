@@ -4,8 +4,10 @@ hostname: "{{ vm.name }}"
 fqdn: "{{ vm.name }}.{{ domain }}"
 manage_etc_hosts: false
 ssh_pwauth: True 
+password: devops
 chpasswd: { expire: False }
 timezone: UTC
+
 
 {% if enableroot is defined %}
 #Root Password

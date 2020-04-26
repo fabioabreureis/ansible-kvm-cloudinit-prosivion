@@ -1,4 +1,5 @@
 ---
+libvirt_dir: /var/lib/libvirt
 cloudimg_file: "{{ cloudimg_url | basename }}"
 osversion: "{{ osvariant }}"
 vm_data_dir: "{{ libvirt_dir }}/images/{{ vm.name }}"

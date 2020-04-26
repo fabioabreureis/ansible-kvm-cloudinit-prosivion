@@ -1,0 +1,6 @@
+- hosts: nameserver
+  vars_files:
+    - inventory/host_vars/localhost.yml
+  roles:
+    - role: ansible-bind
+      when: dnsconfig is defined and dnsconfig == 'ok'

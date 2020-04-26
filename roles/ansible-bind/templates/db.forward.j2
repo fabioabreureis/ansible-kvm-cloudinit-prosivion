@@ -1,0 +1,12 @@
+@ 86400 IN SOA {{ domain }}. root.{{ domain }}. (
+20091028 ; serial yyyy-mm-dd
+10800 ; refresh every 15 min
+3600 ; retry every hour
+3600000 ; expire after 1 month +
+86400 ); min ttl of 1 day
+@ 86400 IN NS {{ ansible_default_ipv4.address }}.
+
+{% for vm in virtual_machines %}
+{{ vm.name }} A {{ vm.net.ip }}
+{% endfor %}
+

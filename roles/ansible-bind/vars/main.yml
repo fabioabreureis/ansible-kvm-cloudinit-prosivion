@@ -1,0 +1,3 @@
+---
+network: "{{ ansible_default_ipv4.address.split('.')[0] }}.{{ ansible_default_ipv4.address.split('.')[1] }}.{{ ansible_default_ipv4.address.split('.')[2] }}"
+rev_domain: "{{ network.split('.')[2] }}.{{ network.split('.')[1] }}.{{ network.split('.')[0] }}.in-addr.arpa"

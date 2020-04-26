@@ -1,2 +1,5 @@
 [kvm]
-kvm.lab
+localhost
+
+[nameserver]
+domain

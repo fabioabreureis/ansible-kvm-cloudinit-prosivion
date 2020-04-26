@@ -1,0 +1,60 @@
+---
+# Image url session:
+cloudimg_url: https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-1809.qcow2
+#cloudimg_url: https://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.img
+#cloudimg_url: https://cloud-images.ubuntu.com/bionic/20200407/bionic-server-cloudimg-amd64.img
+#cloudimg_url: https://cloud.centos.org/centos/6/images/CentOS-6-x86_64-GenericCloud.qcow2
+
+# DNS Session 
+domain: local.lab
+dnsconfig: ok 
+
+# Kvm session
+libvirt_dir: /var/lib/libvirt
+
+# Vm session: 
+osvariant: centos7.0
+enableroot: yes
+vm_public_key: "{{lookup('file','~/.ssh/id_rsa.pub')}}"
+virtual_machines:
+  - name: domain
+    cpu: 1
+    mem: 1024
+    disk: 15G
+    bridge: bridge0
+    net:
+      ip: 192.168.15.199
+      mask: 255.255.255.0
+      gateway: 192.168.15.1
+      dns: 192.168.15.199
+  - name: kube1
+    cpu: 2
+    mem: 5092
+    disk: 15G
+    bridge: bridge0
+    net:
+      ip: 192.168.15.201
+      mask: 255.255.255.0
+      gateway: 192.168.15.1
+      dns: 192.168.15.199
+  - name: kube2
+    cpu: 2
+    mem: 5092
+    disk: 15G
+    bridge: bridge0
+    net:
+      ip: 192.168.15.202
+      mask: 255.255.255.0
+      gateway: 192.168.15.1
+      dns: 192.168.15.199
+  - name: kube3
+    cpu: 2
+    mem: 5092
+    disk: 15G
+    bridge: bridge0
+    net:
+      ip: 192.168.15.203
+      mask: 255.255.255.0
+      gateway: 192.168.15.1
+      dns: 192.168.15.199
+
