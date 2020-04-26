@@ -10,6 +10,7 @@ This role does deploy vms inside Kvm for lab proposes with cloud-init.
 - Generate cloud init user/meta data and booting iso.
 - Increase root storage size.
 - Deploy vms with volumes. 
+- Deploy a DNS Server with Bind. 
 - This was tested with :
     + Ubuntu: 16 and 18
     + RHEL OS based on 6 and 7 version (CentOS and Fedora).  
@@ -38,7 +39,8 @@ How to :
 ---------
 
 
-In my example I will create a deployment of 2 vms with CentOS7 using bridge0, some volumes  and insert my ssh public key. 
+In my example I will create a deployment of 3 vms with CentOS7 using bridge0, some volumes and insert my ssh public key. 
+
 If you wasn't set the bridge configuration it will config the default bridge from kvm.
 
 
@@ -51,6 +53,9 @@ vi inventory/hosts
 
 [kvm]
 kvm.example.com
+
+[nameserver]
+192.168.15.199
 
 ...
 ```
@@ -78,6 +83,16 @@ vm_public_key: "{{lookup('file','~/.ssh/id_rsa.pub')}}"
 enableroot: yes
 root_pwd: redhat
 virtual_machines:
+  - name: domain
+    cpu: 1
+    mem: 1024
+    disk: 15G
+    bridge: bridge0
+    net:
+      ip: 192.168.15.199
+      mask: 255.255.255.0
+      gateway: 192.168.15.1
+      dns: 192.168.15.199
   - name: lab1
     cpu: 1
     mem: 512
@@ -122,6 +137,26 @@ Execute the site.yml playbook :
 ```bash 
 
 ansible-playbook -i inventory/hosts site.yml 
+
+``` 
+
+
+Setup the dns.yml like this configuration bellow: 
+
+```bash
+- hosts: nameserver
+  vars_files:
+    - inventory/host_vars/kvm.example.com.yml
+  roles:
+    - role: ansible-bind
+      when: dnsconfig is defined and dnsconfig == 'ok'
+```
+
+Remember the DNS server setup it's only for laboratory proposes.
+
+```bash 
+
+ansible-playbook -i inventory/hosts dns.yml
 
 ``` 
 
