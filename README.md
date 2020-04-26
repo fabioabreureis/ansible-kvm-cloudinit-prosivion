@@ -91,13 +91,13 @@ virtual_machines:
       dns: 8.8.8.8
     volumes:
       - device: vdb
-        size: 5
+        size: 5G
         type: raw
       - device: vdc
-        size: 5
+        size: 5G
         type: raw
       - device: vdd
-        size: 5 
+        size: 5G
         type: raw
   - name: lab2
     cpu: 1
@@ -112,7 +112,7 @@ virtual_machines:
       dns: 8.8.8.8
     volumes:
       - device: vdb
-        size: 2
+        size: 2G
         type: raw
 ```
 
